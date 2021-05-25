@@ -9,6 +9,8 @@
 <body>
     <img src="assets/img/uniajc.png"/>
     <h1>Restaurant</h1>
+
+    <h2>Welcome</h2>
     <main>
         <ul>
            <li>Chef cristian aragon</li>
