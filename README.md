@@ -1,3 +1,7 @@
 # Crypto restaurant
-## development {cristian aragon, sergio correa, nicolas martinez, carlos ortigoza}
 
+## Development 
+* Cristian aragon
+* Sergio correa
+* Nicolas martinez
+* Carlos ortigoza
