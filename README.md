@@ -1,5 +1,6 @@
 # Crypto restaurant
-## Developement 
+
+## Development 
 * Cristian aragon
 * Sergio correa
 * Nicolas martinez
