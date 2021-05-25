@@ -9,9 +9,14 @@
 <body>
     <img src="assets/img/uniajc.png"/>
     <h1>Restaurant</h1>
+    <main>
+        <ul>
+           <li>Chef cristian aragon</li>
+           <li>General sergio correa</li>
+           <li>Chef assistant carlos ortigoza</li>
+           <li>Chef assistant nicolas martinez</li>
+        </ul>
+    
+    </main>
 </body>
 </html>
-
-<?php
-print("Hello!!");
-?>
