@@ -11,3 +11,7 @@
     <h1>Restaurant</h1>
 </body>
 </html>
+
+<?php
+print("Hello!!");
+?>
