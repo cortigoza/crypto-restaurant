@@ -6,7 +6,7 @@ class Connects
     protected function connect()
     {
         try {
-            $connected = $this->dbh = new PDO("mysql:local=localhost;dbname=crypto-restaurant", "root", "root");
+            $connected = $this->dbh = new PDO("mysql:local=localhost;dbname=crypto-restaurant", "admin", "admin");
             return $connected;
         } catch (Exception $e) {
             var_dump("Error bd:" . $e->getMessage() . "<br>");
