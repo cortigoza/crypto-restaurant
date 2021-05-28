@@ -143,3 +143,13 @@ if (isset($_GET['insert_products'])) {
     echo json_encode(['response' => 'ok', 'data' => $result]);
     return;
 }
+
+if (isset($_GET['recovery_password'])) {
+    $result = $db->recoveryPassword($data);
+    if (!$result) {
+        header('HTTP/1.1 400');
+        return;
+    }
+    echo json_encode(['response' => 'ok', 'data' => $result]);
+    return;
+}

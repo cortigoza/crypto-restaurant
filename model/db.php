@@ -136,4 +136,34 @@ class DB extends Connects
         $sql->execute();
         return $sql->fetchAll();
     }
+
+
+    public function recoveryPassword($mail) {
+        $connect = parent::connect();
+
+        $sql = "SELECT * FROM users WHERE mail = '$mail'"
+
+        $sql = $connect->prepare($sql);
+        $sql->bindParam(':mail', $mail);
+        $sql->execute();
+
+        if ($sql->fetchAll()) {
+            $this->updatePassword($mail);
+            return 'contraseña actualizada';
+        }
+        return false;
+    }
+
+    private function updatePassword($mail) {
+        $connect = parent::connect();
+        $password = password_hash('Crypto', PASSWORD_DEFAULT);
+
+        $sql = "UPDATE users SET password = :password WHERE mail = :mail"
+        $sql = $connect->prepare($sql);
+        $sql->bindParam(':password', $data['password']);
+        $sql->bindParam(':mail', $data['mail']);
+        $sql->execute();    
+        return 'Cryto';
+
+    }
 }
