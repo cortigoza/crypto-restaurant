@@ -104,4 +104,18 @@ class DB extends Connects
         $sql->execute();
         return $sql->fetchAll();
     }
+
+    public function insertCampaigns($data) {
+        $connect = parent::connect();
+
+        $sql = "INSERT INTO campaigns (title, title_description, discount_code, percent)";
+
+        $sql = $connect->prepare($sql);
+        $sql->bindValue('title', $data['title']);
+        $sql->bindValue('title_description', $data['description']);
+        $sql->bindValue('discount_code', $data['discount']);
+        $sql->bindValue('percent', $data['percent']);
+        $sql->execute();
+        return $sql->fetchAll();
+    }
 }
