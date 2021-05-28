@@ -5,33 +5,37 @@ class DB extends Connects
     {
         $connect = parent::connect();
 
-        $sql = "SELECT * FROM users WHERE mail = $mail";
+        $sql = "SELECT * FROM users WHERE mail = :mail";
         $sql = $connect->prepare($sql);
+        $sql->bindValue(':mail', $mail);
         $sql->execute();
-
         while ($data = $sql->fetch()) {
-            if (!password_verify($password, $data['password'])) {
-                return false;
+            if (password_verify($password, $data['password'])) {
+                return $data;
             }
         }
-        return $sql->fetchAll(PDO::FETCH_ASSOC);
+        return false;
     }
 
     public function Register($data)
     {
         $connect = parent::connect();
-
-        $sql = "INSERT INTO users (name, surname, mail, password, mobile,cedula, date_birth, id_rol, state )";
+        $password = password_hash($data['password'], PASSWORD_DEFAULT);
+        $type = 1;
+        $sql = "INSERT INTO users 
+                        VALUES(null, :name, :surname, :mail, :address, :password, :mobile,
+                                :cedula, :date_birth, :id_rol, :state )";
         $sql = $connect->prepare($sql);
-        $sql->bindValue('name', $data['name']);
-        $sql->bindValue('surname', $data['surname']);
-        $sql->bindValue('mail', $data['mail']);
-        $sql->bindValue('password', password_hash($data['password'], PASSWORD_DEFAULT));
-        $sql->bindValue('mobile', $data['mobile']);
-        $sql->bindValue('cedula', $data['cedula']);
-        $sql->bindValue('date_birth', $data['date_birth']);
-        $sql->bindValue('id_rol', $data['rol']);
-        $sql->bindValue('state', 1);
+        $sql->bindParam(':name', $data['name']);
+        $sql->bindParam(':surname', $data['surname']);
+        $sql->bindParam(':mail', $data['mail']);
+        $sql->bindParam(':address', $data['address']);
+        $sql->bindParam(':password', $password);
+        $sql->bindParam(':mobile', $data['mobile']);
+        $sql->bindParam(':cedula', $data['cedula']);
+        $sql->bindParam(':date_birth', $data['date_birth']);
+        $sql->bindParam(':id_rol', $data['rol']);
+        $sql->bindParam(':state', $type);
         $sql->execute();
         return $sql->fetchAll();
     }
@@ -105,16 +109,16 @@ class DB extends Connects
         return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function insertCampaigns($data) {
+    public function insertCampaigns($data)
+    {
         $connect = parent::connect();
 
-        $sql = "INSERT INTO campaigns (title, title_description, discount_code, percent)";
-
+        $sql = "INSERT INTO campaigns   VALUES(null, :title, :title_description, :discount_code, :percent)";
         $sql = $connect->prepare($sql);
-        $sql->bindValue('title', $data['title']);
-        $sql->bindValue('title_description', $data['description']);
-        $sql->bindValue('discount_code', $data['discount']);
-        $sql->bindValue('percent', $data['percent']);
+        $sql->bindValue(':title', $data['title']);
+        $sql->bindValue(':title_description', $data['description']);
+        $sql->bindValue(':discount_code', $data['discount']);
+        $sql->bindValue(':percent', $data['percent']);
         $sql->execute();
         return $sql->fetchAll();
     }

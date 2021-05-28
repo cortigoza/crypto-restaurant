@@ -34,7 +34,7 @@ if (isset($_GET['login'])) {
 }
 
 if (isset($_GET['register'])) {
-    $result = $db->register($data, $hash);
+    $result = $db->register($data);
     if (!$result) {
         header('HTTP/1.1 400');
         return;
@@ -124,7 +124,7 @@ if (isset($_GET['sale'])) {
     return;
 }
 
-if (isset($_GET['insert_campains'])) {
+if (isset($_GET['insert_campaigns'])) {
     $result = $db->insertCampaigns($data);
     if (!$result) {
         header('HTTP/1.1 400');
