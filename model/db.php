@@ -14,7 +14,7 @@ class DB extends Connects
                 return false;
             }
         }
-        return $sql->fetchAll();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function Register($data)
@@ -42,7 +42,7 @@ class DB extends Connects
         $sql = "SELECT * FROM campaigns";
         $sql = $connect->prepare($sql);
         $sql->execute();
-        return $sql->fetchAll();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getBookings()
@@ -52,7 +52,7 @@ class DB extends Connects
         $sql = "SELECT * FROM bookings";
         $sql = $connect->prepare($sql);
         $sql->execute();
-        return $sql->fetchAll();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getPayments()
@@ -62,7 +62,7 @@ class DB extends Connects
         $sql = "SELECT * FROM payments";
         $sql = $connect->prepare($sql);
         $sql->execute();
-        return $sql->fetchAll();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getSales()
@@ -72,7 +72,7 @@ class DB extends Connects
         $sql = "SELECT * FROM sales";
         $sql = $connect->prepare($sql);
         $sql->execute();
-        return $sql->fetchAll();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getBooking($idUser)
@@ -82,7 +82,7 @@ class DB extends Connects
         $sql = "SELECT * FROM bookings WHERE id_user = $idUser";
         $sql = $connect->prepare($sql);
         $sql->execute();
-        return $sql->fetchAll();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getPayment($idUser)
@@ -92,7 +92,7 @@ class DB extends Connects
         $sql = "SELECT * FROM payments WHERE id_user = $idUser";
         $sql = $connect->prepare($sql);
         $sql->execute();
-        return $sql->fetchAll();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getSale($idUser)
@@ -102,7 +102,7 @@ class DB extends Connects
         $sql = "SELECT * FROM sales WHERE id_user = $idUser";
         $sql = $connect->prepare($sql);
         $sql->execute();
-        return $sql->fetchAll();
+        return $sql->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function insertCampaigns($data) {

@@ -59,7 +59,7 @@ if (isset($_GET['campaigns'])) {
         header('HTTP/1.1 400');
         return;
     }
-    echo json_encode(['response' => 'ok']);
+    echo json_encode(['response' => 'ok', 'data' => $result]);
     return;
 }
 
@@ -69,7 +69,7 @@ if (isset($_GET['bookings'])) {
         header('HTTP/1.1 400');
         return;
     }
-    echo json_encode(['response' => 'ok']);
+    echo json_encode(['response' => 'ok', 'data' => $result]);
     return;
 }
 
@@ -79,7 +79,7 @@ if (isset($_GET['payments'])) {
         header('HTTP/1.1 400');
         return;
     }
-    echo json_encode(['response' => 'ok']);
+    echo json_encode(['response' => 'ok', 'data' => $result]);
     return;
 }
 
@@ -89,7 +89,7 @@ if (isset($_GET['sales'])) {
         header('HTTP/1.1 400');
         return;
     }
-    echo json_encode(['response' => 'ok']);
+    echo json_encode(['response' => 'ok', 'data' => $result]);
     return;
 }
 
@@ -99,7 +99,7 @@ if (isset($_GET['booking'])) {
         header('HTTP/1.1 400');
         return;
     }
-    echo json_encode(['response' => 'ok']);
+    echo json_encode(['response' => 'ok', 'data' => $result]);
     return;
 }
 
@@ -110,7 +110,7 @@ if (isset($_GET['payment'])) {
         header('HTTP/1.1 400');
         return;
     }
-    echo json_encode(['response' => 'ok']);
+    echo json_encode(['response' => 'ok', 'data' => $result]);
     return;
 }
 
@@ -120,7 +120,7 @@ if (isset($_GET['sale'])) {
         header('HTTP/1.1 400');
         return;
     }
-    echo json_encode(['response' => 'ok']);
+    echo json_encode(['response' => 'ok', 'data' => $result]);
     return;
 }
 
@@ -130,6 +130,6 @@ if (isset($_GET['insert_campains'])) {
         header('HTTP/1.1 400');
         return;
     }
-    echo json_encode(['response' => 'ok']);
+    echo json_encode(['response' => 'ok', 'data' => $result]);
     return;
 }
