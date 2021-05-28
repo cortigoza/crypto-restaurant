@@ -115,10 +115,24 @@ class DB extends Connects
 
         $sql = "INSERT INTO campaigns   VALUES(null, :title, :title_description, :discount_code, :percent)";
         $sql = $connect->prepare($sql);
-        $sql->bindValue(':title', $data['title']);
-        $sql->bindValue(':title_description', $data['description']);
-        $sql->bindValue(':discount_code', $data['discount']);
-        $sql->bindValue(':percent', $data['percent']);
+        $sql->bindParam(':title', $data['title']);
+        $sql->bindParam(':title_description', $data['description']);
+        $sql->bindParam(':discount_code', $data['discount']);
+        $sql->bindParam(':percent', $data['percent']);
+        $sql->execute();
+        return $sql->fetchAll();
+    }
+
+    public function insertProducts($data) {
+        $connect = parent::connect();
+
+        $sql = "INSERT INTO products   VALUES(null, :title, :description, :price, :photo, :state)";
+        $sql = $connect->prepare($sql);
+        $sql->bindParam(':title', $data['title']);
+        $sql->bindParam(':description', $data['description']);
+        $sql->bindParam(':price', $data['price']);
+        $sql->bindParam(':photo', $data['photo']);
+        $sql->bindParam(':state', $data['state']);
         $sql->execute();
         return $sql->fetchAll();
     }

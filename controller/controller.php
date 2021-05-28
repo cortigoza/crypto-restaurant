@@ -133,3 +133,13 @@ if (isset($_GET['insert_campaigns'])) {
     echo json_encode(['response' => 'ok', 'data' => $result]);
     return;
 }
+
+if (isset($_GET['insert_products'])) {
+    $result = $db->insertProducts($data);
+    if (!$result) {
+        header('HTTP/1.1 400');
+        return;
+    }
+    echo json_encode(['response' => 'ok', 'data' => $result]);
+    return;
+}
