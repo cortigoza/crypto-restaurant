@@ -11,19 +11,18 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 require_once("../config/connect.php");
 require_once("../model/db.php");
-include "payment.php";
 include "mail/mail.php";
 
 $db = new DB();
 
-$data = json_decode(file_get_contents('php://input') , true);
+$data = json_decode(file_get_contents('php://input'), true);
 
-if(!$data) {
+if (!$data) {
     header('HTTP/1.1 404');
     return;
 }
 
-if(isset($data['mail']) && isset($data['password'])) {
+if (isset($_GET['login'])) {
     $result = $db->Login($data['mail'], $data['password']);
     if (!$result) {
         header('HTTP/1.1 400');
@@ -34,10 +33,22 @@ if(isset($data['mail']) && isset($data['password'])) {
     return;
 }
 
-if (isset($data['accounts']) && isset($data['body'])) {
-    emailSend($data['accounts'], $data['body'], $data['subject']);
+if (isset($_GET['register'])) {
+    $result = $db->register($data, $hash);
+    if (!$result) {
+        header('HTTP/1.1 400');
+        return;
+    }
+    echo json_encode(['response' => 'ok']);
+    return;
 }
 
-if (isset($data['payment'])) {
-    sendPayment();
+if (isset($_GET['mail'])) {
+    emailSend($data['accounts'], $data['body'], $data['subject']);
+    if (!$result) {
+        header('HTTP/1.1 400');
+        return;
+    }
+    echo json_encode(['response' => 'ok']);
+    return;
 }
