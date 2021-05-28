@@ -6,7 +6,7 @@ form.addEventListener("submit", async (e) => {
     const password = e.target.pass;
 
     // doing the request to the login service
-    const res = await fetch("/cryptoRestaurant/controller/controller.php?login=true", {
+    const res = await fetch("../controller/controller.php?login=true", {
         method: "POST",
         body: JSON.stringify({
             mail,
@@ -15,11 +15,11 @@ form.addEventListener("submit", async (e) => {
     });
 
     if (res.status === 200) {
-        window.location.href = "/cryptoRestaurant/views/index.php";
+        window.location = "index.php";
     }
 })
 
 registerBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    window.location.href = "/cryptoRestaurant/views/register-user.php";
+    window.location = "register-user.php";
 })
