@@ -141,7 +141,7 @@ class DB extends Connects
     public function recoveryPassword($mail) {
         $connect = parent::connect();
 
-        $sql = "SELECT * FROM users WHERE mail = '$mail'"
+        $sql = "SELECT * FROM users WHERE mail = :mail";
 
         $sql = $connect->prepare($sql);
         $sql->bindParam(':mail', $mail);
@@ -155,15 +155,16 @@ class DB extends Connects
     }
 
     private function updatePassword($mail) {
+        $temp = 'Crypto';
         $connect = parent::connect();
-        $password = password_hash('Crypto', PASSWORD_DEFAULT);
+        $password = password_hash($temp, PASSWORD_DEFAULT);
 
-        $sql = "UPDATE users SET password = :password WHERE mail = :mail"
+        $sql = "UPDATE users SET password = :password WHERE mail = :mail";
         $sql = $connect->prepare($sql);
-        $sql->bindParam(':password', $data['password']);
-        $sql->bindParam(':mail', $data['mail']);
+        $sql->bindParam(':password', $password);
+        $sql->bindParam(':mail', $mail);
         $sql->execute();    
-        return 'Cryto';
+        return $temp;
 
     }
 }
