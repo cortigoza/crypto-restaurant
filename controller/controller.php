@@ -123,3 +123,13 @@ if (isset($_GET['sale'])) {
     echo json_encode(['response' => 'ok']);
     return;
 }
+
+if (isset($_GET['insert_campains'])) {
+    $result = $db->insertCampaigns($data);
+    if (!$result) {
+        header('HTTP/1.1 400');
+        return;
+    }
+    echo json_encode(['response' => 'ok']);
+    return;
+}
