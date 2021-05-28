@@ -79,6 +79,20 @@ CREATE TABLE `products` (
 
 /*Data for the table `products` */
 
+/*Table structure for table `recurring` */
+
+DROP TABLE IF EXISTS `recurring`;
+
+CREATE TABLE `recurring` (
+  `id_recurrent` int(2) NOT NULL AUTO_INCREMENT,
+  `id_user` int(2) DEFAULT NULL,
+  `cantidad_compras` int(10) DEFAULT NULL,
+  `state` int(2) DEFAULT 1,
+  PRIMARY KEY (`id_recurrent`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `recurring` */
+
 /*Table structure for table `roles` */
 
 DROP TABLE IF EXISTS `roles`;
@@ -88,9 +102,13 @@ CREATE TABLE `roles` (
   `description` varchar(50) DEFAULT NULL,
   `state` int(2) DEFAULT 1,
   PRIMARY KEY (`id_role`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `roles` */
+
+insert  into `roles`(`id_role`,`description`,`state`) values 
+(1,'administrador',1),
+(2,'cliente',1);
 
 /*Table structure for table `sales` */
 
@@ -134,16 +152,20 @@ CREATE TABLE `users` (
   `name` varchar(50) DEFAULT NULL,
   `surname` varchar(50) DEFAULT NULL,
   `mail` varchar(50) DEFAULT NULL,
-  `password` varchar(50) DEFAULT NULL,
+  `address` varbinary(50) DEFAULT NULL,
+  `password` varchar(250) DEFAULT NULL,
   `mobile` int(15) DEFAULT NULL,
   `cedula` int(50) DEFAULT NULL,
   `date_birth` datetime DEFAULT NULL,
   `id_rol` int(2) DEFAULT NULL,
   `state` int(2) DEFAULT 1,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `users` */
+
+insert  into `users`(`id_user`,`name`,`surname`,`mail`,`address`,`password`,`mobile`,`cedula`,`date_birth`,`id_rol`,`state`) values 
+(1,'Nicolas','Martinez','nicolasmartinezgo@gmail.com',NULL,'$2y$10$4bWl4WqZ8JiI927s0XwRK.17V19pFVjZrtXG10qWSwzaTUwF8ZtmO',2147483647,1006073254,'2001-10-21 15:12:32',1,1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
