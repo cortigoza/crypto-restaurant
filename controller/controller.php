@@ -52,3 +52,74 @@ if (isset($_GET['mail'])) {
     echo json_encode(['response' => 'ok']);
     return;
 }
+
+if (isset($_GET['campaigns'])) {
+    $result = $db->getCampaigns();
+    if (!$result) {
+        header('HTTP/1.1 400');
+        return;
+    }
+    echo json_encode(['response' => 'ok']);
+    return;
+}
+
+if (isset($_GET['bookings'])) {
+    $result = $db->getBookings();
+    if (!$result) {
+        header('HTTP/1.1 400');
+        return;
+    }
+    echo json_encode(['response' => 'ok']);
+    return;
+}
+
+if (isset($_GET['payments'])) {
+    $result = $db->getPayments();
+    if (!$result) {
+        header('HTTP/1.1 400');
+        return;
+    }
+    echo json_encode(['response' => 'ok']);
+    return;
+}
+
+if (isset($_GET['sales'])) {
+    $result = $db->getSales();
+    if (!$result) {
+        header('HTTP/1.1 400');
+        return;
+    }
+    echo json_encode(['response' => 'ok']);
+    return;
+}
+
+if (isset($_GET['booking'])) {
+    $result = $db->getBooking($data['id']);
+    if (!$result) {
+        header('HTTP/1.1 400');
+        return;
+    }
+    echo json_encode(['response' => 'ok']);
+    return;
+}
+
+
+if (isset($_GET['payment'])) {
+    $result = $db->getPayment($data['id']);
+    if (!$result) {
+        header('HTTP/1.1 400');
+        return;
+    }
+    echo json_encode(['response' => 'ok']);
+    return;
+}
+
+if (isset($_GET['sale'])) {
+    $result = $db->getSale($data['id']);
+    if (!$result) {
+        header('HTTP/1.1 400');
+        return;
+    }
+    echo json_encode(['response' => 'ok']);
+    return;
+}
